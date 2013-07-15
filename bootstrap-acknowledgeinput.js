@@ -51,16 +51,17 @@
             inputEl.parent().find('[data-role=acknowledgement]').addClass('add-on').find('i').removeClass();
             var re;
             var data_type = inputEl.data('type') === undefined ? "text" : inputEl.data('type');
+                data_type = data_type.toLowerCase();
             var required = inputEl.attr("required") === undefined ? false : inputEl.attr("required").toLowerCase() === "required";
 
-            if (data_type.toLowerCase() === "text") {
+            if (data_type === "text") {
                 if (isNotNullOrEmpty(inputEl.val())) {
                     modify_classes(true, acknowledgeVars.icon_success);
                 } else if (required) {
                     modify_classes(false, acknowledgeVars.icon_danger);
                 }
-            } else if (data_type.toLowerCase() === "email") {
-                re = /^(([^<>()\[\]\\.,;:\s@\"]+(\.[^<>()\[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            } else if (data_type === "email") {
+                re = /^(([^<>()\[\]\\.,;:\s@\"]+(\.[^<>()\[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 var isEmail = re.test(inputEl.val());
 
                 if (isNotNullOrEmpty(inputEl.val()) && isEmail) {
@@ -68,7 +69,7 @@
                 } else if (required || (isNotNullOrEmpty(inputEl.val()) && !isEmail)) {
                     modify_classes(false, acknowledgeVars.icon_danger);
                 }
-            } else if (data_type.toLowerCase() === "tel") {
+            } else if (data_type === "tel") {
                 re = /^(\+)?( |-|\(|\)|[0-9]){4,50}$/;
                 var isTel = re.test(inputEl.val());
 
@@ -77,7 +78,7 @@
                 } else if (required || (isNotNullOrEmpty(inputEl.val()) && !isTel)) {
                     modify_classes(false, acknowledgeVars.icon_danger);
                 }
-            } else if (data_type.toLowerCase() === "number") {
+            } else if (data_type === "number") {
                 re = /^(\-)?([0-9])+$/;
                 var isNumber = re.test(inputEl.val());
 
@@ -86,7 +87,7 @@
                 } else if (required || (isNotNullOrEmpty(inputEl.val()) && !isNumber)) {
                     modify_classes(false, acknowledgeVars.icon_danger);
                 }
-            } else if (data_type.toLowerCase() === "integer") {
+            } else if (data_type === "integer") {
                 re = /^(\-)?(([1-9])([0-9])+|0)$/;
                 var isInt = re.test(inputEl.val());
 
@@ -95,7 +96,7 @@
                 } else if (required || (isNotNullOrEmpty(inputEl.val()) && !isInt)) {
                     modify_classes(false, acknowledgeVars.icon_danger);
                 }
-            } else if (data_type.toLowerCase() === "decimal") {
+            } else if (data_type === "decimal") {
                 re = /^(\-)?(([0-9])+(\.)([0-9])+|0)$/;
                 var isDecimal = re.test(inputEl.val());
 
@@ -104,7 +105,7 @@
                 } else if (required || (isNotNullOrEmpty(inputEl.val()) && !isDecimal)) {
                     modify_classes(false, acknowledgeVars.icon_danger);
                 }
-            } else if (data_type.toLowerCase() === "currency") {
+            } else if (data_type === "currency") {
                 re = /^(([0-9])+((\.|,)?([0-9]){2,2})?)$/;
                 var isCurrency = re.test(inputEl.val());
 
@@ -113,7 +114,7 @@
                 } else if (required || (isNotNullOrEmpty(inputEl.val()) && !isCurrency)) {
                     modify_classes(false, acknowledgeVars.icon_danger);
                 }
-            } else if (data_type.toLowerCase() === "colour" || data_type.toLowerCase() === "color") {
+            } else if (data_type === "colour" || data_type === "color") {
                 re = /^#(([0-9a-f]){3}){1,2}$/;
                 var isColour = re.test(inputEl.val());
 
@@ -126,7 +127,7 @@
                 } else if (required || (isNotNullOrEmpty(inputEl.val()) && !isColour)) {
                     modify_classes(false, acknowledgeVars.icon_danger);
                 }
-            } else if (data_type.toLowerCase() === "url") {
+            } else if (data_type === "url") {
                 re = /^(https?:\/\/)?([\da-z\.\-]+)\.([a-z\.]{2,6})([\/\w \.\-]*)*\/?$/;
                 var isUrl = re.test(inputEl.val());
 
